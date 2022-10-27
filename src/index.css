@@ -12,3 +12,8 @@ body {
 code {
   font-family:"Montserrat", sans-serif;
 }
+
+ion-icon {
+  font-size: 50px;
+  color: #1297f3;
+}

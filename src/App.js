@@ -1,20 +1,27 @@
+import { ThemeProvider } from "styled-components";
 import { Home } from "./Components/Home/Home";
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
-import { Welcome } from "./Components/Home/Welcome";
-import { AnimatePresence } from "framer-motion";
+import { Welcome } from "./Components/Welcome/Welcome";
 
 function App() {
-  const location = useLocation();
   return (
-    <AnimatePresence exitBeforeEnter>
-      <Router key={location.pathname} location={location}>
-        <Routes>
-          <Route path="/" exact element={<Welcome />} />
-          <Route path="/Home" element={<Home />} />
-        </Routes>
-      </Router>
-    </AnimatePresence>
+    <>
+      <ThemeProvider theme={theme}>
+        <Welcome />
+        <ThemeProvider theme={invertTheme}>
+          <Home />
+        </ThemeProvider>
+      </ThemeProvider>
+    </>
   );
 }
+export const theme = {
+  background: "#fff",
+  color: "#1297f3",
+};
+
+export const invertTheme = ({ background, color }) => ({
+  background: color,
+  color: background,
+});
 
 export default App;
