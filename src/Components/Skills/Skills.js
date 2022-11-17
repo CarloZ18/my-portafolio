@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Container } from "../Welcome/Welcome";
 import { VerticalSlideshow } from "./VerticalSlide";
 
-export const Skills = () => {
+export const Skills = ({ skillScroll }) => {
   const myDevSkills = [
     "Html",
     "React",
@@ -46,29 +46,44 @@ export const Skills = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
       exit={{ opacity: 0 }}
+      id={"Skills"}
     >
-      <TitleSkills>My Skills</TitleSkills>
-      <SkillsCarousel>
-        <VerticalSlideshow
-          title={"Developer"}
-          upValue={"up-developer"}
-          downValue={"down-developer"}
-          content={mapDevSkills}
-          numElem={8}
-          reference={devSlider}
-          justifyContent={"center"}
-        />
+      {skillScroll > 1000 && (
+        <>
+          <TitleSkills
+            initial={{ opacity: 0 , y:50 }}
+            animate={{ opacity: 1, y:0 }}
+            transition={{ duration: 1 ,type: 'spring'}}
+          >
+            My Skills
+          </TitleSkills>
+          <SkillsCarousel
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay:0.5}}
+          >
+            <VerticalSlideshow
+              title={"Developer"}
+              upValue={"up-developer"}
+              downValue={"down-developer"}
+              content={mapDevSkills}
+              numElem={8}
+              reference={devSlider}
+              justifyContent={"center"}
+            />
 
-        <VerticalSlideshow
-          title={"Designer"}
-          upValue={"up-designer"}
-          downValue={"down-designer"}
-          content={mapDesignSkills}
-          numElem={4}
-          reference={designSlider}
-          justifyContent={"center"}
-        />
-      </SkillsCarousel>
+            <VerticalSlideshow
+              title={"Designer"}
+              upValue={"up-designer"}
+              downValue={"down-designer"}
+              content={mapDesignSkills}
+              numElem={4}
+              reference={designSlider}
+              justifyContent={"center"}
+            />
+          </SkillsCarousel>
+        </>
+      )}
     </Container>
   );
 };
@@ -82,7 +97,7 @@ export const TitleSkills = styled(motion.h2)`
 export const SkillsCarousel = styled(motion.div)`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 1200px;
 `;
 

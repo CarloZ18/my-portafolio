@@ -1,16 +1,15 @@
 import styled from "styled-components";
 import { TitleSkills } from "../Skills/Skills";
 import { Container } from "../Welcome/Welcome";
-import { HorizontalSlideshow } from "./HorizontalSlide";
 import img1 from "./assets/screenshot-xpudfx.csb.app-2022.11.15-14_27_57.png";
 import img2 from "./assets/screenshot-pqmjgk.csb.app-2022.11.15-15_10_42.png";
 import img3 from "./assets/screenshot-7n6c6w.csb.app-2022.11.15-15_13_19.png";
 import img4 from "./assets/screenshot-0lldb8.csb.app-2022.11.15-15_15_53.png";
 import img5 from "./assets/screenshot-2tjmr9.csb.app-2022.11.15-15_25_41.png";
 import img6 from "./assets/screenshot-f1y9p4.csb.app-2022.11.15-15_26_55.png";
-import { useRef } from "react";
+import { InfiniteLooper } from "./InfinityLooper";
 
-export const Projects = () => {
+export const Projects = ({ projectScroll }) => {
   const myProjects = [
     {
       name: "Random quote",
@@ -29,18 +28,16 @@ export const Projects = () => {
       url: "https://0lldb8.csb.app/",
       image: img4,
     },
-    { name: "Pomodoro clock", url: "https://2tjmr9.csb.app/", image: img5 },
     {
-      name: "Random quote2",
-      url: "https://xpudfx.csb.app/",
-      image: img1,
+      name: "Pomodoro clock",
+      url: "https://2tjmr9.csb.app/",
+      image: img5,
     },
   ];
   const mapProjects = myProjects.map((project) => (
-    <a href={project.url} rel="noreferrer" target="_blank">
-      <ProjectCard key={project.name}>
+    <a key={project.name} href={project.url} rel="noreferrer" target="_blank">
+      <ProjectCard initial={{ opacity: 1 }} animate={{ opacity: 0 }}>
         <ProjectImg src={project.image} alt="" />
-
         <ProjectInfo>
           <h3 className="project-name">{project.name}</h3>
         </ProjectInfo>
@@ -48,31 +45,34 @@ export const Projects = () => {
     </a>
   ));
 
-  const projectSlider = useRef();
   return (
     <Container
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
       exit={{ opacity: 0 }}
+      id={"Projects"}
     >
-      <TitleSkills>My Projects</TitleSkills>
-      <HorizontalSlideshow
-        content={mapProjects}
-        reference={projectSlider}
-        nextValue={"next-project"}
-        prevValue={"prev-project"}
-        numElem={6}
-        justifyContent={"center"}
-      ></HorizontalSlideshow>
+      {projectScroll > 1700 && (
+        <>
+          <TitleSkills
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2, type: "spring" }}
+          >
+            My Projects
+          </TitleSkills>
+          <InfiniteLooper children={mapProjects} speed={15} direction="right" />
+        </>
+      )}
     </Container>
   );
 };
 
 export const ProjectImg = styled.img`
   height: 100%;
-  background-size: cover;
   width: 100%;
+  background-size: cover;
   background-position: center;
   transition: all 1s;
 `;
@@ -97,17 +97,16 @@ export const ProjectInfo = styled.div`
 
 export const ProjectCard = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   margin-bottom: 10px;
   border-radius: 15px;
+  overflow: hidden;
   scale: 0.9;
   border-color: ${(props) => props.theme.color};
   border-style: solid;
   border-width: 5px;
-
-
   &:hover ${ProjectImg} {
     transform: scale(1.2);
     transition: all 1s;
@@ -128,7 +127,7 @@ export const ProjectCard = styled.div`
   }
   &:hover ${ProjectInfo} {
     opacity: 1;
-    transform: translateY(360px);
+    transform: translateY(150px);
   }
   @media (max-width: 768px) {
     &:before {

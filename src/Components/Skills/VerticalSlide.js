@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const VerticalSlideshow = ({
@@ -51,14 +52,14 @@ export const VerticalSlideshow = ({
     reference.current.removeEventListener("transitionend", resetTransicion);
   };
   return (
-    <CarouselDiv justifyContent={justifyContent} flexDirection={"column"} heightDiv={"170px"}>
+    <CarouselDiv justifyContent={justifyContent} flexDirection={"column"}>
       <h3>{title}</h3>
       <button value={upValue} onClick={changeSkill}>
         <ion-icon name="chevron-up-outline"></ion-icon>
       </button>
 
       <div>
-        <Slide ref={reference}>{content}</Slide>
+        <div ref={reference}>{content}</div>
       </div>
 
       <button value={downValue} onClick={changeSkill}>
@@ -68,12 +69,11 @@ export const VerticalSlideshow = ({
   );
 };
 
-export const CarouselDiv = styled.div`
+export const CarouselDiv = styled(motion.div)`
   display: flex;
   flex-direction: ${(props) => props.flexDirection};
   align-items: center;
   justify-content: center;
-  width: 820px;
   & h3 {
     color: #fff;
     font-size: 25px;
@@ -88,14 +88,10 @@ export const CarouselDiv = styled.div`
 
   & div {
     display: flex;
-    flex-direction: ${(props)=>props.flexDirection};
+    flex-direction: ${(props) => props.flexDirection};
     align-items: center;
     justify-content: ${(props) => props.justifyContent};
     overflow: hidden;
-    height: ${(props)=>props.heightDiv};
-    width: 300px;
+    height: 170px;
   }
-`;
-
-export const Slide = styled.div`
 `;

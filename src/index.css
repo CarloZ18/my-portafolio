@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;800&display=swap");
-
+:root{
+  --principal-color:#c51c3b;
+}
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
@@ -12,7 +14,7 @@ body {
 
 ion-icon {
   font-size: 50px;
-  color: #c51c3b;
+  color: var(--principal-color);
   background: none;
 }
 
@@ -39,4 +41,26 @@ li a {
 /* Change the link color to #111 (black) on hover */
 li a:hover {
   background-color: #111;
+}
+
+@keyframes slideAnimation {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+
+.looper__innerList {
+  display: flex;
+  justify-content: center;
+  width:250%
+}
+
+.looper__listInstance {
+  display: flex;
+  width:max-content;
+  animation: slideAnimation linear infinite;
 }

@@ -10,7 +10,7 @@ export const Profession = () => {
     "Entrepreneur",
   ];
   const [profession, setProfession] = useState(0);
-const intervalRef = useRef()
+  const intervalRef = useRef();
   const changeProfession = () => {
     if (profession === 3) {
       setProfession(0);
@@ -20,14 +20,21 @@ const intervalRef = useRef()
   };
 
   useEffect(() => {
-  intervalRef.current = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       changeProfession();
     }, 2000);
     return () => clearInterval(intervalRef.current);
   }, [profession]);
-  return <TypeProfession >{professions[profession]}</TypeProfession>;
+  return (
+    <TypeProfession
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.2}}
+    >
+      {professions[profession]}
+    </TypeProfession>
+  );
 };
-
 
 /*
 const professionAnimation = keyframes`
@@ -39,5 +46,7 @@ const professionAnimation = keyframes`
 
 const TypeProfession = styled(motion.p)`
   color: #c51c3b;
+  background: linear-gradient(270deg, #000, #c51c3b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
-

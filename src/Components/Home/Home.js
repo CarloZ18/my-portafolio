@@ -6,40 +6,27 @@ import { Container } from "../Welcome/Welcome";
 import myImg from "./assets/img/YAQ_5926.jpg";
 import { Profession } from "./Profession";
 
-export const Home = () => {
-  const [currentScroll, setCurrentScroll] = useState(0);
+export const Home = ({homeScroll}) => {
 
-  useEffect(() => {
-    const handleScroll = (event) => {
-      if (currentScroll < 300) {
-        setCurrentScroll(window.scrollY);
-      } else {
-        setCurrentScroll(300);
-      }
-
-      console.log(currentScroll);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-  }, [currentScroll]);
   return (
     <Container
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
+      id={"Home"}
     >
-      {currentScroll >= 300 && (
+      {homeScroll > 100 && (
         <DivHome>
           <ContainerImg
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            transition={{ delay: 0.5 }}
           ></ContainerImg>
           <div>
             <IamText
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
+              transition={{ delay: 1 }}
             >
               Hi, my name is Carlos
               <div>
@@ -50,7 +37,7 @@ export const Home = () => {
             <Paragraph
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2, easy: "easyInOut" }}
+              transition={{ delay: 1.5, easy: "easyInOut" }}
             >
               I like to be in <b> constant learning</b>, I am passionate about
               creating
@@ -60,7 +47,7 @@ export const Home = () => {
             <Paragraph
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2.2, easy: "easyInOut" }}
+              transition={{ delay: 1.7, easy: "easyInOut" }}
             >
               I also<b> love sports and music</b>, I think these activities are
               excellent to stay healthy both physically and mentally.
