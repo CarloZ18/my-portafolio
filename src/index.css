@@ -56,7 +56,7 @@ li a:hover {
 .looper__innerList {
   display: flex;
   justify-content: center;
-  width:250%
+  width:350%
 }
 
 .looper__listInstance {

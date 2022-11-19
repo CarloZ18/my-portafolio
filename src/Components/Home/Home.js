@@ -6,8 +6,7 @@ import { Container } from "../Welcome/Welcome";
 import myImg from "./assets/img/YAQ_5926.jpg";
 import { Profession } from "./Profession";
 
-export const Home = ({homeScroll}) => {
-
+export const Home = ({ homeScroll }) => {
   return (
     <Container
       initial={{ opacity: 0 }}
@@ -64,8 +63,12 @@ const DivHome = styled(motion.div)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 50px;
+  gap: 40px;
   margin: 0px 50px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 const ContainerImg = styled(motion.div)`
@@ -76,10 +79,13 @@ const ContainerImg = styled(motion.div)`
   background-position: center;
   box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
   background-image: url(${myImg});
+  @media (max-width: 768px) {
+    height: 200px;
+  }
 `;
 
 const IamText = styled(motion.h2)`
-  color:${(props)=>props.theme.color};
+  color: ${(props) => props.theme.color};
   font-size: 2.5em;
   z-index: 0;
 
@@ -88,9 +94,15 @@ const IamText = styled(motion.h2)`
     flex-direction: row;
     gap: 15px;
   }
+  @media (max-width: 768px) {
+    font-size: 1.7em;
+  }
 `;
 
 export const Paragraph = styled(motion.p)`
-  color:${(props)=>props.theme.color};
+  color: ${(props) => props.theme.color};
   font-size: 1.5em;
+  @media (max-width: 768px) {
+    font-size: 1.3em;
+  }
 `;

@@ -8,8 +8,6 @@ export const VerticalSlideshow = ({
   upValue,
   downValue,
   numElem,
-  justifyContent,
-  arr,
 }) => {
   const halfContent = numElem - Math.round(numElem / 2);
 
@@ -52,7 +50,7 @@ export const VerticalSlideshow = ({
     reference.current.removeEventListener("transitionend", resetTransicion);
   };
   return (
-    <CarouselDiv justifyContent={justifyContent} flexDirection={"column"}>
+    <CarouselDiv>
       <h3>{title}</h3>
       <button value={upValue} onClick={changeSkill}>
         <ion-icon name="chevron-up-outline"></ion-icon>
@@ -71,7 +69,7 @@ export const VerticalSlideshow = ({
 
 export const CarouselDiv = styled(motion.div)`
   display: flex;
-  flex-direction: ${(props) => props.flexDirection};
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   & h3 {
@@ -88,9 +86,9 @@ export const CarouselDiv = styled(motion.div)`
 
   & div {
     display: flex;
-    flex-direction: ${(props) => props.flexDirection};
+    flex-direction: column;
     align-items: center;
-    justify-content: ${(props) => props.justifyContent};
+    justify-content:center;
     overflow: hidden;
     height: 170px;
   }

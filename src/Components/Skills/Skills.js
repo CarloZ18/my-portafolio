@@ -69,7 +69,7 @@ export const Skills = ({ skillScroll }) => {
               content={mapDevSkills}
               numElem={8}
               reference={devSlider}
-              justifyContent={"center"}
+           
             />
 
             <VerticalSlideshow
@@ -79,7 +79,7 @@ export const Skills = ({ skillScroll }) => {
               content={mapDesignSkills}
               numElem={4}
               reference={designSlider}
-              justifyContent={"center"}
+           
             />
           </SkillsCarousel>
         </>
@@ -98,7 +98,7 @@ export const SkillsCarousel = styled(motion.div)`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 1200px;
+  width: 100%;
 `;
 
 export const MySkills = styled.p`

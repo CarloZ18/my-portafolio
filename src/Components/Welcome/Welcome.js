@@ -34,6 +34,7 @@ export const Container = styled(motion.div)`
 export const Text = styled(motion.h1)`
   color: ${(props) => props.theme.color};
   font-weight: 400;
+  font-size: 1.5rem;
 `;
 
 const Icon = styled(motion.i)``;

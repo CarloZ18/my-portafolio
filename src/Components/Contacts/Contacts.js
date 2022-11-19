@@ -17,7 +17,7 @@ export const Contacts = () => {
           <p>
             If you want to be in contact with me, you just have to click on the
             message button or write to me through my social networks, thanks to
-            see my portfolio. Happy and blessed day!
+            see my portfolio.<br/><br/> Happy and blessed day!
           </p>
           <a
             target="_blank"
@@ -62,6 +62,9 @@ const ProfileImg = styled.img`
   background-size: cover;
   height: 650px;
   width: 650px;
+  @media (max-width: 768px) {
+    left: -35%;
+  }
 `;
 
 const ProfileContent = styled.div`
@@ -118,6 +121,9 @@ const ProfileCard = styled.div`
     :after {
       opacity: 1;
     }
+  }
+  @media (max-width: 768px) {
+    width:100vw;
   }
 `;
 
